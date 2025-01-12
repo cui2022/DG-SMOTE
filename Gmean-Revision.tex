@@ -1,0 +1,280 @@
+\documentclass[journal]{IEEEtran}
+%\documentclass[journal,transmag]{IEEEtran}
+%\documentclass[journal,transmag]{IEEEcsmag}
+%\documentclass[journal,12pt,onecolumn,draftclsnofoot,]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load
+% *** MISC UTILITY PACKAGES ***
+%
+\usepackage{amsfonts, amsmath, amssymb}
+\usepackage[mathlines]{lineno}
+\modulolinenumbers[5]
+\usepackage{comment}
+\setcounter{tocdepth}{3}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+%\usepackage{algpseudocode,float}
+\usepackage{booktabs}
+%\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[flushleft]{threeparttable}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{clrscode}
+\usepackage{rotating}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\definecolor{Lightblue}{rgb}{0.25, 0.5, 1.0}
+\usepackage{longtable}
+\usepackage{lipsum}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{subfloat}
+\usepackage{float}
+\usepackage{soul}
+
+%\usepackage{supertabular}
+
+
+\newcommand{\keywords}[1]{\par\addvspace\baselineskip
+	\noindent\keywordname\enspace\ignorespaces#1}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+% \renewcommand{\baselinestretch}{.996}
+
+\begin{document}
+\begin{table*}
+	\centering 
+	\renewcommand\arraystretch{0.93}
+	\renewcommand\tabcolsep{5pt} 
+	\begin{threeparttable}
+		\caption{G\_mean ($\times$ 100) results on the test sets.}
+		%\tabcolsep=0.05cm
+		\scriptsize
+		%\tiny
+		\begin{tabular}{|c|c|cc|cc|cc|cc|cc|cc|cc|cc|}%c|
+			\hline
+			%\multicolumn{2}{|c}{}  &\multicolumn{9}{|c|}{AUC $\times 100$}   \\ \hline  
+			%%& \tabincell{c}{Training Time \\(Seconds) } 
+			\multirow{2}{*}{Datasets} 
+			&\multirow{2}{*}{Methods} 
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{Original}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{SMOTE}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{ADASYN}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{BSMOTE1}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{BSMOTE2}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{ \tabincell{c}{SMOTE\\+ENN}}}}
+			&\multicolumn{2}{c|}{\multirow{2}{*}{\textbf{\tabincell{c}{SMOTE\\+Tomek}}}}
+			&\multicolumn{2}{c|}{\textbf{DG-SMOTE}}\\\cline{17-18}
+			&&&&&&&&&&&&&&&&\textbf{Best} &\textbf{Mean$\pm$Std} \\%\cline{3-11}
+			%&\textbf{LR} &\textbf{SVM} &\textbf{DT} &\textbf{RF} &\textbf{GBDT}
+			\hline 
+			
+			%Chowdary-2006
+			&LR & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00} & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & \textbf{100.00$\pm$0.00}   \\
+			& RF &96.01  & =     &96.01  & =     &96.01  & =    &\textbf{100.00}  &-     &96.01  & =    &96.01  & =   &96.01  & =    & \textbf{100.00} &96.34$\pm$1.00 \\
+			Chowdary-2006
+			& GBDT &96.08  &-     &93.51  &=     &85.37  & +     &89.53  & +     &96.08  &-     &87.71  & +     &93.51  & =    & \textbf{100.00} & 94.72$\pm$2.91 \\
+			& AdaBoost &91.99  & +    &91.99  & +    &96.08 &-     &96.08 &-     &91.99  & +     &91.99  & +    &91.99  & +     & \textbf{100.00} & 93.80$\pm$2.61 \\
+			\hline
+			
+			%Colon
+			&LR & 80.18  &=     &75.59  &=     &77.15  &=    & 80.18  &=    & 81.65  &=     & 64.55  & +       & 81.65  &=       & \textbf{95.74}   &78.27$\pm$9.12  \\
+			& RF &75.59  & +     &81.65  &=     &86.60  &-     &86.60  &-    &70.71  & +     &76.38  &=     &80.18  &=    & \textbf{91.29} &78.83$\pm$8.81 \\
+			Colon
+			& GBDT &77.15  & +     &73.19 & +     &61.72  & +     &\textbf{91.29}  & +     &69.01 & +     &76.38 & +     &73.19  & +     & 86.60 & 82.93$\pm$5.31 \\
+			& AdaBoost & 50.00  & +     & 46.34  & +     & 46.83  & +     & 48.05  & +     & 65.45  & =     & 61.79  & +     & 46.34  & +     & \textbf{98.78} & 71.11$\pm$15.92 \\
+			\hline
+			
+			%glass1
+			& LR & 0.00  & +     & 53.74  & =     & 36.97  & +     & 44.93  & +     & 39.67  & +     & 49.84  & +     & 54.60  & =     &\textbf{61.05}  & 49.69$\pm$10.51  \\
+			& RF    & 69.16  & +     & 82.85  & +     & 78.28  & +     & 73.72  & +     & 76.14  & +     & 77.22  & +     & 78.81  & +     &\textbf{89.86}  & 83.42$\pm$3.52  \\
+			Glass1
+			& GBDT  & 80.37  & +     & 78.28  & +     & 77.35  & +     & 71.22  & +     & 79.60  & +     & 76.00  & +     & 76.14  & +     &\textbf{89.86}  & 81.16$\pm$4.01  \\
+			& Adaboost & 79.60  & -     & 76.21  & +     & 73.86  & +     & 75.04  & +     & 77.22  & =     & 72.66  & +     & 71.66  & +     &\textbf{84.15}  & 78.03$\pm$2.98  \\
+			\hline
+			
+			%Pomeroy
+			&LR &0.00  & +     &57.74  & +      &57.74  & +    &57.74  & +      &57.74  & +      &70.71  & +    &57.74  & +      & \textbf{100.00}  & 89.23$\pm$12.42  \\
+			&RF &81.65  &-     &57.74 & +     &54.01  & +     &57.74  & +     &54.01  & +     &61.24  & +      &57.74  & +     & \textbf{86.60} & 72.20$\pm$13.48 \\
+			Pomeroy-2002-v1
+			& GBDT &57.74  & +     &93.54  &=     &93.54  &=     &93.54  &=    &93.54  &=     &76.38 & +     &93.54  &=     & \textbf{100.00} &65.59$\pm$42.09 \\
+			& AdaBoost &54.07  &-     &54.07  &-     &54.07  &-     &54.07  &-     &0.00  &+     &70.71  &-     &54.07  &-     & \textbf{93.54} &32.57$\pm$32.30 \\
+			\hline
+			
+			%ecoli-0-3-4\_vs\_5
+			& LR    & 0.00  & +     & 33.33  & +     & 23.57  & +     & 36.00  & =     & 38.49  & =     & 40.82  & -     & 33.33  & +     & \textbf{52.70}  & 36.79$\pm$6.06  \\
+			& RF    & \textbf{91.29}  & -     & 90.44  & =     & \textbf{91.29}  & -     & 70.71  & +     & \textbf{91.29}  & -     & 90.44  & =     & 90.44  & =     & \textbf{91.29}  & 90.09$\pm$1.76\\
+			Ecoli-0-3-4\_vs\_5
+			& GBDT  & 88.72  & +     & 88.72  & +     & 88.72  & +     & 70.05  & +     & 87.84  & +     & 87.84  & +     & 88.72  & +     & \textbf{90.44}  & 89.49$\pm$0.61  \\
+			& Adaboost & 90.44  & =     & 89.58  & +     & 89.58  & +     & 89.58  & +     & 90.44  & =     & 89.58  & +     & 89.58  & +     & \textbf{91.29}  & 89.89$\pm$1.83  \\
+			\hline
+			
+			
+			%yeast-2\_vs\_4		
+			& LR    & 0.00  & +     & 86.41  & -     & 90.24  & -     & \textbf{91.03}  & -     & 89.04  & -     & 85.63  & -     & 86.41  & -     & 88.24  & 65.98$\pm$17.70  \\
+			& RF    & 79.58  & +     & 79.28  & +     & 79.58  & +     & 75.50  & +     & 89.02  & +     & 91.65  & =     & 79.28  & +     & \textbf{93.35}  & 91.84$\pm$0.99  \\
+			Yeast-2\_vs\_4
+			& GBDT  & 75.21  & +     & 89.71  & +     & 85.52  & +     & 92.38  & +     & 78.98  & +     & 88.67  & +     & 89.71  & +     & \textbf{95.99}  & 94.05$\pm$1.56  \\
+			& Adaboost & 71.98  & +     & 83.47  & +     & 75.78  & +     & 82.84  & +     & 91.65  & -     & 86.52  & +     & 83.47  & +     &\textbf{93.73}  & 89.82$\pm$2.83  \\\hline
+			%ecoli-0-6-7\_vs\_3-5		
+			& LR    & 0.00  & +     & 60.55  & +     & 62.11  & +     & 73.68  & +     & 70.71  & +     & 64.55  & +     & 60.55  & +     &\textbf{84.52}  & 80.61$\pm$2.73  \\
+			& RF    &\textbf{91.81}  & -     & 84.52  & +     & 88.64  & +     & 89.44  & +     & 88.64  & +     & 90.24  & -     & 84.52  & +     &90.24  & 88.82$\pm$3.56  \\
+			Ecoli-0-6-7\_vs\_3-5
+			& GBDT  & \textbf{90.24}  & -     & 63.25  & +     & 63.25  & +     & 87.83  & =     & 87.83  & =     & 89.44  & -     & 63.25  & +     & \textbf{90.24}  & 76.94$\pm$12.40  \\
+			& Adaboost & \textbf{91.03}  & -     & 87.01  & +     & 88.64  & +     & 87.83  & +     & 88.64  & +     & 89.44  & =     & 87.01  & +     & \textbf{91.03}  & 88.61$\pm$2.47  \\
+			\hline
+			
+			%ecoli-0-2-3-4\_vs\_5			
+			& LR    & 0.00  & +     & 73.85  & +     & 78.82  & +     & 71.35  & +     & 61.55  & +     & 85.28  & -     & 73.85  & +     & \textbf{87.04}  & 80.30$\pm$3.16  \\
+			& RF    & 90.45  & =     & 89.61  & +     & 90.45  & =     & 80.90  & +     & 90.45  & =     & \textbf{91.29}  & -     & 89.61  & +     & \textbf{91.29}  & 90.48$\pm$0.64  \\
+			Ecoli-0-2-3-4\_vs\_5
+			& GBDT  & 90.45  & -     & 88.76  & +     & 87.04  & +     & 67.42  & +     & 78.62  & +     & 81.65  & +     & 88.76  & +     & \textbf{91.29}  & 89.52$\pm$0.91  \\
+			& Adaboost & 80.15  & +     & 90.45  & =     & 89.61  & +     & 90.45  & =     & 89.61  & +     & 90.45  & =     & 90.45  & =     & \textbf{91.29}  & 90.56$\pm$0.36  \\
+			\hline
+			
+			%ecoli-0-1\_vs\_2-3-5		
+			& LR    & 0.00  & +     & 82.86  & +     & 85.52  & +     & 83.76  & +     & 84.64  & +     & 82.86  & +     & 82.86  & +     & \textbf{89.06}  & 86.63$\pm$1.99  \\
+			& RF    & 65.47  & +     & 91.19  & +     & 91.19  & +     & 91.19  & +     & \textbf{91.89}  & -     & 90.49  & +     & 91.19  & +     & \textbf{91.89}  & 89.99$\pm$3.40  \\
+			Ecoli-0-1\_vs\_2-3-5
+			& GBDT  & 64.97  & +     & 91.19  & -     & 83.24  & +     & 91.19  & -     &\textbf{91.89}  & -     & 82.60  & +     & 91.19  & -     & \textbf{91.89}  & 84.41$\pm$5.33  \\
+			& Adaboost & 75.03  & +     & 74.46  & +     & 83.24  & =     & 83.24  & =     & \textbf{91.89}  & -     & 91.19  & -     & 83.24  & =     & \textbf{91.89}  & 81.65$\pm$5.68  \\
+			\hline
+			
+			%ecoli-0-2-6-7\_vs\_3-5			
+			& LR    & 0.00  & +     & 60.05  & +     & 66.53  & +     & 61.59  & +     & 69.12  & +     & 62.73  & +     & 60.05  & +     & \textbf{82.13}  & 80.27$\pm$1.55  \\
+			& RF    & \textbf{92.58}  & -     & 88.71  & =     & 88.71  & =     & 80.98  & +     & 79.52  & +     & 88.71  & =     & 88.71  & =     & 89.50  & 88.24$\pm$2.87  \\
+			Ecoli-0-2-6-7\_vs\_3-5
+			& GBDT  & 80.98  & =     & 88.71  & -     & 80.98  & =     & 88.71  & -     & 80.25  & =     & 88.71  & -     & 88.71  & -     & \textbf{89.50}  & 76.87$\pm$11.89  \\
+			& Adaboost & 83.82  & =     & 88.71  & =     & 88.71  & =     & 88.71  & =     & 87.91  & =     & 88.71  & =     & 88.71  & =     & \textbf{91.82}  & 86.70$\pm$4.58  \\
+			\hline
+			
+			%ecoli-0-3-4-6\_vs\_5
+			& LR    & 0.00  & +     & 65.47  & +     & 62.20  & +     & 56.69  & +     & 48.80  & +     & 81.83  & -     & 65.47  & +     & \textbf{87.12}  & 75.08$\pm$4.69  \\
+			& RF    & 70.71  & +     & 70.71  & +     & 90.47  & =     & 70.71  & +     & \textbf{91.29}  & -     & 81.65  & +     & 70.71  & +     & \textbf{91.29}  & 90.58$\pm$0.64  \\
+			Ecoli-0-3-4-6\_vs\_5
+			& GBDT  & 90.47  & -     & 68.79  & +     & 88.81  & +     & 70.08  & +     & 90.47  & -     & 68.14  & +     & 68.79  & +     & \textbf{91.29}  & 89.72$\pm$0.63  \\
+			& Adaboost & \textbf{90.47}  & =     & 80.92  & +     & 89.64  & +     & \textbf{90.47}  & =     & 87.97  & +     & 57.74  & +     & 80.92  & +     & \textbf{90.47}  & 90.01$\pm$1.76  \\
+			\hline
+			
+			%ecoli-0-3-4-7\_vs\_5-6
+			& LR    & 0.00  & +     & 11.95  & =     & 11.95  & =     & 11.95  & =     & 11.95  & =     & 11.95  & =     & 11.95  & =     & \textbf{29.28}  & 13.19$\pm$3.49  \\
+			& RF    & 61.24  & +     & 90.83  & +     & 84.09  & +     & 92.87  & +     & \textbf{99.28}  & -     & 90.83  & +     & 90.83  & +     & 93.54  & 93.32$\pm$0.37  \\
+			Ecoli-0-3-4-7\_vs\_5-6
+			& GBDT  & 85.36  & +     & 92.20  & -     & 92.20  & -     & \textbf{92.87}  & -     & 92.20  & -     & 92.20  & -     & 90.83  & =     & \textbf{92.87}  & 89.06$\pm$3.89  \\
+			& Adaboost & 86.60  & =     & 85.98  & +     & 84.09  & +     & 85.36  & +     & 92.20  & =     & 92.20  & =     & 85.36  & +     & \textbf{93.54}  & 89.77$\pm$4.06  \\
+			\hline
+			
+			%ecoli-0-1-4-7\_vs\_5-6
+			& LR    & 0.00  & +     & 85.58  & +     & 85.58  & +     & 86.68  & -     & 86.68  & -     & 85.02  & +     & 85.58  & +     & \textbf{88.85}  & 83.42$\pm$15.79  \\
+			& RF    & 86.13  & +     & 85.66  & +     & 85.66  & +     & 85.18  & +     & 93.03  & -     & 85.66  & +     & 85.66  & +     & \textbf{93.54}  & 92.07$\pm$0.38  \\
+			Ecoli-0-1-4-7\_vs\_5-6
+			& GBDT  & 78.63  & +     & 84.22  & +     & 91.49  & +     & 84.70  & +     & 92.52  & -     & 92.00  & +     & 84.22  & +     & \textbf{93.03}  & 92.24$\pm$0.56  \\
+			& Adaboost & 85.18  & +     & 85.66  & +     & 86.13  & +     & 86.13  & +     & 85.18  & +     & 85.66  & +     & 85.66  & +     & \textbf{93.54}  & 90.55$\pm$4.18  \\
+			\hline
+			
+			%ecoli-0-1-4-6\_vs\_5	
+			& LR    & 0.00  & +     & 76.24  & =     & 77.35  & -     & \textbf{85.23}  & -     & 83.97  & -     & 76.24  & =     & 76.24  & =     & 81.39  & 76.33$\pm$1.04  \\
+			& RF    & 57.74  & +     & 70.26  & +     & 70.26  & +     & 57.36  & +     & 81.12  & =     & 70.71  & +     & 70.26  & +     &\textbf{90.11}  & 81.31$\pm$3.10  \\
+			Ecoli-0-1-4-6\_vs\_5
+			& GBDT  & 70.26  & +     & 70.71  & +     & 70.26  & +     & 57.36  & +     & 81.12  & =     & 70.26  & +     & 70.71  & +     & \textbf{90.70}  & 79.22$\pm$4.93  \\
+			& Adaboost & 81.12  & =     & 70.26  & +     & 70.26  & +     & 70.26  & +     & 81.12  & =     & \textbf{91.29}  & -     & 70.26  & +     & 81.65  & 80.45$\pm$2.78  \\
+			\hline
+			
+			%yeast-1\_vs\_7
+			& LR    & 0.00  & +     & 76.08  & -     & 75.63  & -     & 75.63  & -     & \textbf{79.24}  & -     & 72.60  & -     & 76.08  & -     & 71.53  & 42.41$\pm$24.90  \\
+			& RF    & 33.20  & +     & 32.81  & +     & 56.61  & +     & 0.00  & +     & 32.15  & +     & 44.70  & +     & 32.94  & +     & \textbf{70.98}  & 60.54$\pm$7.14  \\
+			Yeast-1\_vs\_7
+			& GBDT  & 33.20  & +     & 46.59  & =     & 32.28  & +     & 32.42  & +     & 32.15  & +     &\textbf{69.14}  & -     & 32.68  & +     & 63.76  & 51.42$\pm$9.09  \\
+			& Adaboost & 33.20  & +     & 44.32  & +     & 44.12  & +     & 31.34  & +     & 42.53  & +     & 62.12  & -     & 44.89  & +     &\textbf{69.14}  & 58.02$\pm$5.73  \\
+			\hline
+			
+			% shuttle-c2-vs-c4 		
+			& LR    & 0.00  & +     & \textbf{70.71}  & =     & \textbf{70.71}  & =     & 0.00  & +     & 0.00  & +     & \textbf{70.71}  & =     & \textbf{70.71}  & =     & \textbf{70.71}  & \textbf{70.71$\pm$0.00}  \\
+			& RF    & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00} & =     & \textbf{100.00}  & =     &\textbf{100.00}  & =     & \textbf{100.00}  & \textbf{100.00$\pm$0.00}  \\
+			Shuttle-c2-vs-c4
+			& GBDT   & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00} & =     & \textbf{100.00}  & =     &\textbf{100.00}  & =     & \textbf{100.00}   & \textbf{99.95$\pm$0.25}  \\
+			& Adaboost & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00}  & =     & \textbf{100.00} & =     & \textbf{100.00}  & =     &\textbf{100.00}  & =     & \textbf{100.00}  & \textbf{99.91$\pm$0.35}  \\
+			\hline
+			
+			%yeast-1-4-5-8\_vs\_7
+			& LR    & 0.00  & +     & 55.72  & -     & \textbf{57.10}  & -     & 56.51  & -     & 56.12  & -     & 48.71  & -     & 55.72  & -     & 55.21  & 29.91$\pm$17.32  \\
+			& RF    & 0.00  & +     & 32.31  & +     & 43.70  & +     & 0.00  & +     & 31.61  & +     & 43.31  & +     & 32.31  & +     & \textbf{44.71}  & 40.71$\pm$5.78  \\
+			Yeast-1-4-5-8\_vs\_7
+			& GBDT  & 0.00  & +     & 45.82  & -     & 32.05  & +     & 32.40  & +     & 32.23  & +     & 43.57  & +     & 45.82  & -     & \textbf{55.06}  & 42.54$\pm$5.80  \\
+			& Adaboost & 33.00  & +     & 31.79  & +     & 43.70  & +     & 32.05  & +     & 45.21  & -     & 42.14  & +     & 31.79  & +     & \textbf{54.76}  & 45.43$\pm$3.52  \\
+			\hline
+			
+			% winequality-white-3\_vs\_7	
+			& LR    & 0.00  & +     & 62.61  & -     & \textbf{63.66}  & -     & 50.25  & -     & 48.07  & -     & 62.31  & -     & 62.61  & -     & 60.77  & 38.69$\pm$12.92  \\
+			& RF    & 40.82  & =     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & \textbf{70.58}  & 51.06$\pm$9.78  \\
+			Winequality-white-3\_vs\_7
+			& GBDT  & 57.74  & -     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 56.30  & +     & 0.00  & +     &\textbf{70.04} & 50.85$\pm$12.76  \\
+			& Adaboost & 40.82  & +     & 40.51  & +     & 40.20  & +     & 40.44  & +     & 0.00  & +     & 39.81  & +     & 0.00  & +     & \textbf{70.04}  & 53.70$\pm$9.87  \\
+			\hline
+			
+			%winequality-white-3-9\_vs\_5		
+			& LR    & 0.00  & +     & 39.27  & -     & 41.98  & -     & 36.47  & -     & 43.84  & -     & 31.96  & -     & 39.27  & -     & \textbf{60.37}  & 25.51$\pm$18.48  \\
+			& RF    & 0.00  & +     & 35.07  & =     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 35.07  & =     & \textbf{69.49}  & 37.95$\pm$19.89  \\
+			Winequality-white-3-9\_vs\_5
+			& GBDT  & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & \textbf{49.42}  & 24.54$\pm$19.68  \\
+			& Adaboost & 35.27  & -     & 33.74  & +     & 33.70  & +     & 0.00  & +     & 0.00  & +     & 46.32  & -     & 33.66  & +     & \textbf{69.90}  & 39.98$\pm$12.35  \\
+			\hline
+			
+			%winequality-red-3\_vs\_5
+			& LR    & 0.00  & +     & 82.05  & -     & 82.34  & -     & 91.33  & -     & \textbf{92.92}  & -     & 77.77  & -     & 81.75  & -     & 88.35  & 50.63$\pm$15.30  \\
+			& RF    & 0.00  & +     & 0.00  & +     & 0.00  & +     & 57.45  & +     & 57.59  & +     & 55.44  & +     & 0.00  & +     & \textbf{80.85}  & 73.14$\pm$11.03  \\
+			Winequality-red-3\_vs\_5
+			& GBDT  & 0.00  & +     & 0.00  & +     & 0.00  & +     & 56.88  & +     & 57.17  & +     & 56.02  & +     & 0.00  & +     & \textbf{81.25}  & 64.67$\pm$16.81  \\
+			& Adaboost & 0.00  & +     & 0.00  & +     & 0.00  & +     & 0.00  & +     & 57.03  & =     & 54.85  & +     & 0.00  & +     & \textbf{98.77}  & 57.95$\pm$32.74  \\
+			\hline
+			
+			\textbf{Summary}   &\multicolumn{16}{c}{\textbf{335 $+$, 109 $=$, 116 $-$}}   &\\  \hline
+		\end{tabular}%
+		\label{gmean-results}
+	\end{threeparttable}
+\end{table*}
+
+\begin{table}[htbp]
+	\begin{threeparttable}
+		\caption{Summaries of the overall results on the test sets.}
+		\renewcommand\arraystretch{1.4}
+		\scriptsize
+		
+		\begin{tabular}{|c|c|c|c|c|}  
+			\hline
+			\multicolumn{5}{|c|}{\textbf{AUC}}
+			\\\cline{1-5}
+			Method ~~& Avg AUC  &Avg-Rank &P-value &Number(+/=/-) \\   \hline 
+			Original &70.59 &4.71 (8) &1.30E-03 &50/15/15\\ \hline
+			SMOTE &75.60 &3.80 (5) &8.40E-02 &48/20/12\\ \hline
+			ADASYN &75.44 &3.99 (6) &9.02E-02 &52/16/12\\ \hline
+			BSMOTE1 &74.93 &4.08 (7) &9.10E-02 &50/14/16\\  \hline
+			BSMOTE2 &76.20 &3.51 (2) &2.61E-01  &41/19/20\\ \hline	
+			SMOTE+ENN &76.88 &3.59 (3) &2.08E-01  &45/17/18\\ \hline	
+			SMOTE+Tomek &75.43  &3.66 (4)  &7.81E-02 &49/20/11\\ \hline
+			DG-SMOTE &\textbf{78.61} &\textbf{2.89 (1)} &-&-/-/-\\  \hline  
+			
+			\multicolumn{5}{|c|}{\textbf{G\_mean}}
+			\\\cline{1-5}
+			Method ~~& Avg G\_mean  &Avg-Rank &P-value &Number(+/=/-) \\   \hline 
+			Original &52.17 &4.84 (8) &8.86E-04 &52/14/14\\ \hline
+			SMOTE &67.78 &3.68 (5)  &1.08E-01 &49/12/19\\ \hline
+			ADASYN &67.62 &3.71 (6) &1.30E-01 &53/12/15\\ \hline
+			BSMOTE1 &65.77 &3.99 (7) &1.03E-01 &50/17/13\\  \hline
+			BSMOTE2 &68.12 &3.33 (2) &3.27E-01 &39/22/19\\ \hline	
+			SMOTE+ENN &71.11 &3.35 (3) &2.94E-01 &43/21/16\\ \hline	
+			SMOTE+Tomek &67.12  &3.58 (4)  &1.00E-01 &49/11/20\\ \hline
+			DG-SMOTE &\textbf{73.58} &\textbf{2.96 (1)} &-&-/-/-\\  \hline  
+		\end{tabular}
+		%\vspace{-1em}
+		\label{performance_summaries-all}
+	\end{threeparttable}
+\end{table} 
+\end{document}
